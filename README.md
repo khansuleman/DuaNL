@@ -9,6 +9,9 @@ At the moment there are the following goals:
 - Add more categories 
 - Add a Favourites system (adding & removing Dua's)
 - Add more Dua's
+- Better Styling
 
-# Why are the Dua's hardcoded and not use sqllite or graphql?
- - api has to be hosted somewhere paid, something which I can't do, so for now they are hardcoded. Maybe in the future I'll swap to GraphQL.
+# Technologies Used?
+
+- React Native
+- GraphQL
