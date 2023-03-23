@@ -1,26 +1,23 @@
-import { StyleSheet, SectionList } from "react-native";
+import { StyleSheet } from "react-native";
 import { useQuery } from "@apollo/client";
-import { GET_CATEGORIES_DUA } from "../gql/queries";
+import { GET_CATEGORIES } from "../gql/queries";
 import Fetching from "./message_fetching";
 import Error from "./message_error";
 import Separator from "./seperator";
-
-import DuaItem from "./dua_item";
 import CategoryItem from "./dua_category_item";
 
-export default function LijstDua() {
-  const { data, loading, error } = useQuery(GET_CATEGORIES_DUA);
+export default function LijstCat() {
+  const { data, loading, error } = useQuery(GET_CATEGORIES);
 
   if (loading) return <Fetching />;
   if (error) return <Error error={error} />;
 
   return (
-    <SectionList
-      sections={data.categories}
-      keyExtractor={(item, index) => item + index}
-      renderItem={({ item }) => <DuaItem dua={item} />}
+    <FlatList
+      data={data.categories}
+      renderItem={({ item }) => <CategoryItem category={item} />}
+      keyExtractor={(index) => index}
       ItemSeparatorComponent={Separator}
-      renderSectionHeader={({ section }) => <CategoryItem category={section} />}
     />
   );
 }
